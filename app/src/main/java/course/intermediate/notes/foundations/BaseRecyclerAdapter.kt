@@ -7,13 +7,30 @@ abstract class BaseRecyclerAdapter<T>(
     protected val masterList: MutableList<T> = mutableListOf()
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    override fun getItemCount() = masterList.count()
+    override fun getItemViewType(position: Int): Int = if (position == 0) {
+        TYPE_ADD_BUTTON
+    } else {
+        TYPE_INFO
+    }
+
+    override fun getItemCount() = masterList.count() + 1
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as BaseViewHolder<T>).onBind(masterList[position])
+        if (holder is AddButtonViewHolder) {
+            holder.onBind(Unit)
+        } else {
+            (holder as BaseViewHolder<T>).onBind(masterList[position - 1])
+        }
     }
 
     abstract class BaseViewHolder<E>(val view: View): RecyclerView.ViewHolder(view) {
         abstract fun onBind(data: E)
+    }
+
+    abstract class AddButtonViewHolder(view: View): BaseViewHolder<Unit>(view)
+
+    companion object {
+        const val TYPE_ADD_BUTTON = 0
+        const val TYPE_INFO = 1
     }
 }
