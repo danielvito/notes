@@ -9,10 +9,11 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name="course.intermediate.notes.create.CreateActivity">
+        </activity>
         <activity
                 android:name="course.intermediate.notes.navigation.NavigationActivity"
                 android:label="@string/title_activity_navigation">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <action android:name="android.intent.action.VIEW"/>
