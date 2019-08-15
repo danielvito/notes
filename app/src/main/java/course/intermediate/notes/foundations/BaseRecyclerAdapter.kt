@@ -2,10 +2,17 @@ package course.intermediate.notes.foundations
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import course.intermediate.notes.models.Note
 
 abstract class BaseRecyclerAdapter<T>(
     protected val masterList: MutableList<T> = mutableListOf()
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    fun updateList(list: MutableList<T>) {
+        masterList.clear()
+        masterList.addAll(list)
+        notifyDataSetChanged()
+    }
 
     override fun getItemViewType(position: Int): Int = if (position == 0) {
         TYPE_ADD_BUTTON
