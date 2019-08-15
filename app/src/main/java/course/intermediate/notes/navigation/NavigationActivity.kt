@@ -46,7 +46,7 @@ class NavigationActivity : AppCompatActivity(), TasksListFragment.TouchActionDel
             .commit()
     }
 
-    override fun onAddButtonClicled(value: String) {
+    override fun onAddButtonClicked(value: String) {
         goToCreateActivity(value)
     }
 

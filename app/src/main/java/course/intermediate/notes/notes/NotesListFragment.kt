@@ -7,13 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import course.intermediate.notes.models.Note
 import intermediate.course.notes.R
 import kotlinx.android.synthetic.main.fragment_tasks_list.*
 
 class NotesListFragment : Fragment() {
 
+    lateinit var viewModel: NoteViewModel
     lateinit var touchActionDelegate: TouchActionDelegate
 
     override fun onAttach(context: Context?) {
@@ -37,12 +38,15 @@ class NotesListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        bindViewModel()
+
         recyclerView.layoutManager = LinearLayoutManager(context)
-        val adapter = NoteAdapter(mutableListOf(
-            Note("Note Testing 1"),
-            Note("Note Testing 2")
-        ), touchActionDelegate )
+        val adapter = NoteAdapter(viewModel.getFakeData(), touchActionDelegate)
         recyclerView.adapter = adapter
+    }
+
+    private fun bindViewModel() {
+        viewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
     }
 
     companion object {
@@ -50,6 +54,6 @@ class NotesListFragment : Fragment() {
     }
 
     interface TouchActionDelegate {
-        fun onAddButtonClicled(value: String)
+        fun onAddButtonClicked(value: String)
     }
 }

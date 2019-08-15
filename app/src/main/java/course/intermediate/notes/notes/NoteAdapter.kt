@@ -34,7 +34,7 @@ class NoteAdapter(
             view.buttonText.text = view.context.getString(R.string.add_button_note)
 
             view.setOnClickListener {
-                touchActionDelegate.onAddButtonClicled(NavigationActivity.FRAGMENT_VALUE_NOTE)
+                touchActionDelegate.onAddButtonClicked(NavigationActivity.FRAGMENT_VALUE_NOTE)
             }
         }
     }

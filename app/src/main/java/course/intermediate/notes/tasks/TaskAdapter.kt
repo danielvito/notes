@@ -35,7 +35,7 @@ class TaskAdapter(
             view.buttonText.text = view.context.getString(R.string.add_button_task)
 
             view.setOnClickListener {
-                touchActionDelegate.onAddButtonClicled(NavigationActivity.FRAGMENT_VALUE_TASK)
+                touchActionDelegate.onAddButtonClicked(NavigationActivity.FRAGMENT_VALUE_TASK)
             }
         }
     }
