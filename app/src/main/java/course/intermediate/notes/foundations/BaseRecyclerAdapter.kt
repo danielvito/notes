@@ -2,7 +2,6 @@ package course.intermediate.notes.foundations
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import course.intermediate.notes.models.Note
 
 abstract class BaseRecyclerAdapter<T>(
     protected val masterList: MutableList<T> = mutableListOf()
@@ -24,14 +23,14 @@ abstract class BaseRecyclerAdapter<T>(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is AddButtonViewHolder) {
-            holder.onBind(Unit)
+            holder.onBind(Unit, position - 1)
         } else {
-            (holder as BaseViewHolder<T>).onBind(masterList[position - 1])
+            (holder as BaseViewHolder<T>).onBind(masterList[position - 1], position - 1)
         }
     }
 
     abstract class BaseViewHolder<E>(val view: View): RecyclerView.ViewHolder(view) {
-        abstract fun onBind(data: E)
+        abstract fun onBind(data: E, listIndex: Int)
     }
 
     abstract class AddButtonViewHolder(view: View): BaseViewHolder<Unit>(view)

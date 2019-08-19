@@ -16,8 +16,8 @@ import kotlinx.android.synthetic.main.fragment_tasks_list.*
 class NotesListFragment : Fragment() {
 
     lateinit var viewModel: NoteViewModel
+    lateinit var contentView: NoteListView
     lateinit var touchActionDelegate: TouchActionDelegate
-    lateinit var adapter: NoteAdapter
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -34,24 +34,26 @@ class NotesListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notes_list, container, false)
+        return inflater.inflate(R.layout.fragment_notes_list, container, false).apply {
+            contentView = this as NoteListView
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = NoteAdapter(touchActionDelegate = touchActionDelegate)
-        recyclerView.adapter = adapter
-
         bindViewModel()
+        setContentView()
+    }
+
+    private fun setContentView() {
+        contentView.initView(touchActionDelegate, viewModel)
     }
 
     private fun bindViewModel() {
         viewModel = ViewModelProviders.of(this).get(NoteViewModel::class.java)
 
         viewModel.noteListLiveData.observe(this, Observer { noteList ->
-            adapter.updateList(noteList)
+            contentView.updateList(noteList)
         })
     }
 

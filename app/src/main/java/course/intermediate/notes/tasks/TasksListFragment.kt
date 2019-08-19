@@ -39,8 +39,8 @@ class TasksListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setContentView()
         bindViewModel()
+        setContentView()
     }
 
     private fun setContentView() {
@@ -50,7 +50,7 @@ class TasksListFragment : Fragment() {
     private fun bindViewModel() {
         viewModel = ViewModelProviders.of(this).get(TaskViewModel::class.java)
 
-        viewModel.taskListLiveData.observe(this, Observer{ taskList ->
+        viewModel.taskListLiveData.observe(this, Observer { taskList ->
             contentView.updateList(taskList)
         })
     }
