@@ -7,16 +7,13 @@ import course.intermediate.notes.models.Note
 
 class NoteViewModel : ViewModel(), NoteListViewContract {
 
-    private val _noteListLiveData: MutableLiveData<MutableList<Note>> = MutableLiveData()
-    val noteListLiveData: LiveData<MutableList<Note>> = _noteListLiveData
+    private val model: NoteModel = NoteModel()
+
+    private val _noteListLiveData: MutableLiveData<List<Note>> = MutableLiveData()
+    val noteListLiveData: LiveData<List<Note>> = _noteListLiveData
 
     init {
-        _noteListLiveData.postValue(getFakeData())
+        _noteListLiveData.postValue(model.getFakeData())
     }
-
-    fun getFakeData(): MutableList<Note> = mutableListOf(
-        Note("Note Testing 1"),
-        Note("Note Testing 2")
-    )
 
 }

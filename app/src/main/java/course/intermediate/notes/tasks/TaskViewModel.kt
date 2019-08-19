@@ -4,36 +4,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import course.intermediate.notes.models.Task
-import course.intermediate.notes.models.Todo
 
-class TaskViewModel: ViewModel(), TaskListViewContract {
+class TaskViewModel : ViewModel(), TaskListViewContract {
 
-    private val _taskListLiveData: MutableLiveData<MutableList<Task>> = MutableLiveData()
-    val taskListLiveData: LiveData<MutableList<Task>> = _taskListLiveData
+    private val model = TaskModel()
+
+    private val _taskListLiveData: MutableLiveData<List<Task>> = MutableLiveData()
+    val taskListLiveData: LiveData<List<Task>> = _taskListLiveData
 
     init {
-        _taskListLiveData.postValue(getFakeData())
+        _taskListLiveData.postValue(model.getFakeData())
     }
-
-    fun getFakeData(): MutableList<Task> = mutableListOf(
-        Task(
-            "Testing 1", mutableListOf(
-                Todo("Todo 11"),
-                Todo("Todo 12", true),
-                Todo("Todo 13"),
-                Todo("Todo 14", true)
-            )
-        ),
-        Task("Testing 2"),
-        Task(
-            "Testing 3", mutableListOf(
-                Todo("Todo 31"),
-                Todo("Todo 32", true),
-                Todo("Todo 33"),
-                Todo("Todo 34", true)
-            )
-        )
-    )
 
     override fun onTodoUpdated(taskIndex: Int, todoIndex: Int, isComplete: Boolean) {
         _taskListLiveData.value?.get(taskIndex)?.todos?.get(todoIndex)?.isComplete = isComplete

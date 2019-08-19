@@ -5,9 +5,9 @@ import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseRecyclerAdapter<T>(
     protected val masterList: MutableList<T> = mutableListOf()
-): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    fun updateList(list: MutableList<T>) {
+    fun updateList(list: List<T>) {
         masterList.clear()
         masterList.addAll(list)
         notifyDataSetChanged()
@@ -19,7 +19,7 @@ abstract class BaseRecyclerAdapter<T>(
         TYPE_INFO
     }
 
-    override fun getItemCount() = masterList.count() + 1
+    override fun getItemCount() = masterList.size + 1
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is AddButtonViewHolder) {
@@ -29,11 +29,11 @@ abstract class BaseRecyclerAdapter<T>(
         }
     }
 
-    abstract class BaseViewHolder<E>(val view: View): RecyclerView.ViewHolder(view) {
+    abstract class BaseViewHolder<E>(val view: View) : RecyclerView.ViewHolder(view) {
         abstract fun onBind(data: E, listIndex: Int)
     }
 
-    abstract class AddButtonViewHolder(view: View): BaseViewHolder<Unit>(view)
+    abstract class AddButtonViewHolder(view: View) : BaseViewHolder<Unit>(view)
 
     companion object {
         const val TYPE_ADD_BUTTON = 0

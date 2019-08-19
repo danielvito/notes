@@ -39,7 +39,7 @@ class NoteListView @JvmOverloads constructor(
         recyclerView.adapter = adapter
     }
 
-    fun updateList(list: MutableList<Note>) {
+    fun updateList(list: List<Note>) {
         adapter.updateList(list)
     }
 

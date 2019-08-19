@@ -23,7 +23,8 @@ class TaskView @JvmOverloads constructor(
         titleView.text = task.title
 
         task.todos.forEachIndexed { todoIndex, todo ->
-            val todoView = (LayoutInflater.from(context).inflate(R.layout.view_todo, todoContainer, false) as TodoView).apply {
+            val todoView =
+                (LayoutInflater.from(context).inflate(R.layout.view_todo, todoContainer, false) as TodoView).apply {
                     initView(todo) { isChecked ->
                         todoCheckedCallback.invoke(todoIndex, isChecked)
                         if (isTaskComplete()) {

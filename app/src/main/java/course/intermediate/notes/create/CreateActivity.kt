@@ -12,7 +12,7 @@ class CreateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create)
 
-        intent.getStringExtra(NavigationActivity.FRAGMENT_TYPE_KEY).run {
+        intent?.getStringExtra(NavigationActivity.FRAGMENT_TYPE_KEY).run {
             textView.text = if (this == NavigationActivity.FRAGMENT_VALUE_TASK) {
                 "this is a task"
             } else if (this == NavigationActivity.FRAGMENT_VALUE_NOTE) {

@@ -11,7 +11,8 @@ import course.intermediate.notes.tasks.TasksListFragment
 import intermediate.course.notes.R
 import kotlinx.android.synthetic.main.activity_navigation.*
 
-class NavigationActivity : AppCompatActivity(), TasksListFragment.TouchActionDelegate, NotesListFragment.TouchActionDelegate {
+class NavigationActivity : AppCompatActivity(), TasksListFragment.TouchActionDelegate,
+    NotesListFragment.TouchActionDelegate {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
