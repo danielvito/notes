@@ -11,7 +11,6 @@ import course.intermediate.notes.views.TaskView
 import intermediate.course.notes.R
 import kotlinx.android.synthetic.main.view_add_button.view.*
 
-
 class TaskAdapter(
     taskList: MutableList<Task> = mutableListOf(),
     val touchActionDelegate: TasksListFragment.TouchActionDelegate,

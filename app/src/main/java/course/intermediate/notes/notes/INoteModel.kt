@@ -11,5 +11,4 @@ interface INoteModel {
     fun deleteNote(note: Note, callback: SuccessCallback)
     fun retriveNotes(): List<Note>
     fun getFakeData(): List<Note>
-
 }

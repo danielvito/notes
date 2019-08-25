@@ -13,7 +13,7 @@ object ApplicationScope {
     }
 }
 
-object ApplicationModules: Module() {
+object ApplicationModules : Module() {
     init {
         bind(INoteModel::class.java).toInstance(NoteLocalModel())
         bind(ITaskModel::class.java).toInstance(TaskLocalModel())

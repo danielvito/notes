@@ -42,5 +42,4 @@ class NoteListView @JvmOverloads constructor(
     fun updateList(list: List<Note>) {
         adapter.updateList(list)
     }
-
 }

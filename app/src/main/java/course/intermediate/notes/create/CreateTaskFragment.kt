@@ -18,7 +18,8 @@ class CreateTaskFragment : Fragment() {
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
@@ -28,9 +29,9 @@ class CreateTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        createTaskView.taskEditText.addTextChangedListener(object: StateChangeTextWatcher() {
+        createTaskView.taskEditText.addTextChangedListener(object : StateChangeTextWatcher() {
             override fun afterTextChanged(s: Editable?) {
-                if(!s.isNullOrEmpty() && previusValue.isNullOrEmpty()) {
+                if (!s.isNullOrEmpty() && previusValue.isNullOrEmpty()) {
                     addTodoView()
                 }
 
@@ -40,11 +41,11 @@ class CreateTaskFragment : Fragment() {
     }
 
     private fun addTodoView() {
-        val view = LayoutInflater.from(context).inflate(R.layout.view_create_todo, containerView,false) as CreateTodoView
-        view.todoEditText.addTextChangedListener(object: StateChangeTextWatcher() {
+        val view = LayoutInflater.from(context).inflate(R.layout.view_create_todo, containerView, false) as CreateTodoView
+        view.todoEditText.addTextChangedListener(object : StateChangeTextWatcher() {
             override fun afterTextChanged(s: Editable?) {
 
-                if(!s.isNullOrEmpty() && previusValue.isNullOrEmpty()) {
+                if (!s.isNullOrEmpty() && previusValue.isNullOrEmpty()) {
                     addTodoView()
                 } else if (!previusValue.isNullOrEmpty() && s.isNullOrEmpty()) {
                     removeTodoView(view)

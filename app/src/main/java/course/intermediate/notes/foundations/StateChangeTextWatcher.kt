@@ -3,7 +3,7 @@ package course.intermediate.notes.foundations
 import android.text.Editable
 import android.text.TextWatcher
 
-open class StateChangeTextWatcher: TextWatcher {
+open class StateChangeTextWatcher : TextWatcher {
 
     var previusValue: String? = null
 

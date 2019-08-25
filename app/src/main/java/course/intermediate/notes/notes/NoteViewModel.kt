@@ -20,5 +20,4 @@ class NoteViewModel : ViewModel(), NoteListViewContract {
         Toothpick.inject(this, ApplicationScope.scope)
         _noteListLiveData.postValue(model.getFakeData())
     }
-
 }

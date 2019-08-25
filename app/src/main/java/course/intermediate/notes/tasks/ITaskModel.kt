@@ -11,5 +11,4 @@ interface ITaskModel {
     fun deleteNote(task: Task, callback: SuccessCallback)
     fun retriveNotes(): List<Task>
     fun getFakeData(): List<Task>
-
 }

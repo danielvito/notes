@@ -24,7 +24,6 @@ class CreateActivity : AppCompatActivity(), CreateTaskFragment.OnFragmentInterac
             } else if (this == NavigationActivity.FRAGMENT_VALUE_NOTE) {
                 createFragment(CreateNoteFragment.newInstance())
             }
-
         }
     }
 
@@ -34,7 +33,7 @@ class CreateActivity : AppCompatActivity(), CreateTaskFragment.OnFragmentInterac
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item?.itemId) {
+        when (item?.itemId) {
             R.id.saveItem -> Toast.makeText(this, "SaveCliked", Toast.LENGTH_SHORT).show()
         }
         return super.onOptionsItemSelected(item)

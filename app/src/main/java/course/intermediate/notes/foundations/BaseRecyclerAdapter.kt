@@ -42,7 +42,7 @@ abstract class BaseRecyclerAdapter<T>(
         const val TYPE_INFO = 1
     }
 
-    class DiffUtilCallbackImpl<T>(private val oldList: List<T>, private val newList: List<T>): DiffUtil.Callback() {
+    class DiffUtilCallbackImpl<T>(private val oldList: List<T>, private val newList: List<T>) : DiffUtil.Callback() {
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
             oldList[oldItemPosition] == newList[newItemPosition]
 
@@ -53,5 +53,4 @@ abstract class BaseRecyclerAdapter<T>(
         override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
             oldList[oldItemPosition] == newList[newItemPosition]
     }
-
 }

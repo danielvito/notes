@@ -1,6 +1,5 @@
 package course.intermediate.notes.tasks
 
-
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -28,7 +27,8 @@ class TasksListFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment

@@ -4,7 +4,7 @@ import course.intermediate.notes.models.Task
 import course.intermediate.notes.models.Todo
 import javax.inject.Inject
 
-class TaskLocalModel @Inject constructor(): ITaskModel {
+class TaskLocalModel @Inject constructor() : ITaskModel {
 
     override fun getFakeData(): MutableList<Task> = mutableListOf(
         Task(
@@ -27,19 +27,18 @@ class TaskLocalModel @Inject constructor(): ITaskModel {
     )
 
     override fun addNote(task: Task, callback: SuccessCallback) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 
     override fun updateNote(task: Task, callback: SuccessCallback) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 
     override fun deleteNote(task: Task, callback: SuccessCallback) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 
     override fun retriveNotes(): List<Task> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
-
 }
