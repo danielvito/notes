@@ -22,7 +22,7 @@ class NoteLocalModel @Inject constructor() : INoteModel {
         TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun retriveNotes(): List<Note> {
+    override fun retrieveNotes(): List<Note> {
         TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 }

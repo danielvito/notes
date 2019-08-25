@@ -26,19 +26,19 @@ class TaskLocalModel @Inject constructor() : ITaskModel {
         )
     )
 
-    override fun addNote(task: Task, callback: SuccessCallback) {
+    override fun addTask(task: Task, callback: SuccessCallback) {
         TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun updateNote(task: Task, callback: SuccessCallback) {
+    override fun updateTask(task: Task, callback: SuccessCallback) {
         TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun deleteNote(task: Task, callback: SuccessCallback) {
+    override fun deleteTask(task: Task, callback: SuccessCallback) {
         TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun retriveNotes(): List<Task> {
+    override fun retrieveTasks(): List<Task> {
         TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 }
