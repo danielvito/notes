@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import course.intermediate.notes.foundations.ApplicationScope
 import course.intermediate.notes.foundations.StateChangeTextWatcher
 import course.intermediate.notes.models.Task
 import course.intermediate.notes.models.Todo
@@ -16,6 +17,7 @@ import intermediate.course.notes.R
 import kotlinx.android.synthetic.main.fragment_create_task.*
 import kotlinx.android.synthetic.main.view_create_task.view.*
 import kotlinx.android.synthetic.main.view_create_todo.view.*
+import toothpick.Toothpick
 import javax.inject.Inject
 
 private const val MAX_TODO_COUNT = 5
@@ -26,6 +28,12 @@ class CreateTaskFragment : Fragment() {
     lateinit var model: TaskLocalModel
 
     private var listener: OnFragmentInteractionListener? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        Toothpick.inject(this, ApplicationScope.scope)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -82,7 +90,16 @@ class CreateTaskFragment : Fragment() {
 
     private fun isTaskEmpty(): Boolean = createTaskView.taskEditText.editableText.isNullOrEmpty()
 
-    fun saveTask() {
+    fun saveTask(callback: (Boolean) -> Unit) {
+        createTask()?.let {
+            model.addTask(it) {
+                // assume model always works
+                callback.invoke(true)
+            }
+        } ?: callback.invoke(false)
+    }
+
+    fun createTask(): Task? {
         if (!isTaskEmpty()) {
             containerView.run {
                 var taskField: String? = null
@@ -92,21 +109,19 @@ class CreateTaskFragment : Fragment() {
                         // task
                         taskField = containerView.getChildAt(i).taskEditText?.toString()
                     } else {
-                        // todo
-                        if (containerView.getChildAt(i).todoEditText.editableText?.toString() != null) {
+                        if (!containerView.getChildAt(i).todoEditText.editableText.isNullOrEmpty()) {
                             todoList.add(
                                 Todo(containerView.getChildAt(i).todoEditText.editableText.toString())
                             )
                         }
                     }
-                    taskField?.let {
-                        model.addTask(Task(it, todoList)) {
-                            // blank callback
-                        }
-                    }
+                }
+                return taskField?.let {
+                    Task(taskField, todoList)
                 }
             }
         }
+        return null
     }
 
     override fun onAttach(context: Context) {
