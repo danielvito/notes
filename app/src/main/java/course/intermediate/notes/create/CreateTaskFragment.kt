@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import course.intermediate.notes.foundations.ApplicationScope
+import course.intermediate.notes.foundations.NullFieldChecker
 import course.intermediate.notes.foundations.StateChangeTextWatcher
 import course.intermediate.notes.models.Task
 import course.intermediate.notes.models.Todo
@@ -62,7 +63,11 @@ class CreateTaskFragment : Fragment() {
         if (!canAddTodos()) {
             return
         }
-        val view = (LayoutInflater.from(context).inflate(R.layout.view_create_todo, containerView, false) as CreateTodoView).apply {
+        val view = (LayoutInflater.from(context).inflate(
+            R.layout.view_create_todo,
+            containerView,
+            false
+        ) as CreateTodoView).apply {
             todoEditText.addTextChangedListener(object : StateChangeTextWatcher() {
                 override fun afterTextChanged(s: Editable?) {
 
@@ -86,7 +91,8 @@ class CreateTaskFragment : Fragment() {
         containerView.removeView(view)
     }
 
-    private fun canAddTodos(): Boolean = containerView.childCount < MAX_TODO_COUNT + 1
+    private fun canAddTodos(): Boolean = (containerView.childCount < MAX_TODO_COUNT + 1) &&
+            !(containerView.getChildAt(containerView.childCount - 1) as NullFieldChecker).hasNullField()
 
     private fun isTaskEmpty(): Boolean = createTaskView.taskEditText.editableText.isNullOrEmpty()
 
