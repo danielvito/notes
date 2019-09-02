@@ -11,10 +11,6 @@ class NoteLocalModel @Inject constructor() : INoteModel {
     private var databaseClient = RoomDatabaseClient.getInstance(NoteApplication.instance.applicationContext)
 
     override fun getFakeData(): MutableList<Note> = retrieveNotes().toMutableList()
-//        mutableListOf(
-//        Note(description = "Note Testing 1"),
-//        Note(description = "Note Testing 2")
-//    )
 
     override fun addNote(note: Note, callback: SuccessCallback) {
         Log.d("UdemyCourse", note.toString())

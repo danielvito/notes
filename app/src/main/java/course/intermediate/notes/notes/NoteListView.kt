@@ -35,7 +35,7 @@ class NoteListView @JvmOverloads constructor(
         // recyclerView.adapter = adapter
 
         recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = NoteAdapter(touchActionDelegate = touchActionDelegate)
+        adapter = NoteAdapter(touchActionDelegate = touchActionDelegate, dataActionDelegate = dataActionDelegate)
         recyclerView.adapter = adapter
     }
 

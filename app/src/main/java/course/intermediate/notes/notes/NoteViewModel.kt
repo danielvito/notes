@@ -9,15 +9,26 @@ import toothpick.Toothpick
 import javax.inject.Inject
 
 class NoteViewModel : ViewModel(), NoteListViewContract {
-
     @Inject
     lateinit var model: INoteModel
 
     private val _noteListLiveData: MutableLiveData<List<Note>> = MutableLiveData()
-    val noteListLiveData: LiveData<List<Note>> = _noteListLiveData
 
+    val noteListLiveData: LiveData<List<Note>> = _noteListLiveData
     init {
         Toothpick.inject(this, ApplicationScope.scope)
-        _noteListLiveData.postValue(model.getFakeData())
+        loadData()
+    }
+
+    fun loadData() {
+        _noteListLiveData.postValue(model.retrieveNotes())
+    }
+
+    override fun onDeleteNote(note: Note) {
+        model.deleteNote(note) {
+            if (it) {
+                loadData()
+            }
+        }
     }
 }
