@@ -113,7 +113,7 @@ class CreateTaskFragment : Fragment() {
                 for (i in 0 until containerView.childCount) {
                     if (i == 0) {
                         // task
-                        taskField = containerView.getChildAt(i).taskEditText?.toString()
+                        taskField = containerView.getChildAt(i).taskEditText?.editableText.toString()
                     } else {
                         if (!containerView.getChildAt(i).todoEditText.editableText.isNullOrEmpty()) {
                             todoList.add(

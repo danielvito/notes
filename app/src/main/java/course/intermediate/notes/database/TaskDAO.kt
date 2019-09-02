@@ -7,6 +7,7 @@ import androidx.room.Query
 import androidx.room.Update
 import course.intermediate.notes.models.Task
 import course.intermediate.notes.models.TaskEntity
+import course.intermediate.notes.models.Todo
 
 @Dao
 interface TaskDAO {
@@ -14,11 +15,17 @@ interface TaskDAO {
     @Insert
     fun addTask(note: TaskEntity)
 
+    @Insert
+    fun addTodo(todo: Todo)
+
     @Update
     fun updateTask(note: TaskEntity)
 
+    @Update
+    fun updateTodo(todo: Todo)
+
     @Delete
-    fun deteleTask(note: TaskEntity)
+    fun deleteTask(note: TaskEntity)
 
     @Query("SELECT * FROM tasks")
     fun retrieveTask(): MutableList<Task>
