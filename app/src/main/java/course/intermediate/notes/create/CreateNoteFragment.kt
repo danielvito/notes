@@ -38,9 +38,9 @@ class CreateNoteFragment : Fragment(), NullFieldChecker {
     }
 
     fun saveNote(callback: (Boolean) -> Unit) {
-        createNote()?.let {
-            model.addNote(it) {
-                callback.invoke(true)
+        createNote()?.let { note ->
+            model.addNote(note) { success ->
+                callback.invoke(success)
             }
         } ?: callback.invoke(false)
     }
