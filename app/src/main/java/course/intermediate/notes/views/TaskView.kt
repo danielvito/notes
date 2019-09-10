@@ -33,6 +33,12 @@ class TaskView @JvmOverloads constructor(
         imageButton.setOnClickListener {
             deleteCallback.invoke()
         }
+
+        if (isTaskComplete()) {
+            this@TaskView.titleView.setStrikeThrough()
+        } else {
+            this@TaskView.titleView.removeStrikeThrough()
+        }
     }
 
     private fun addChildViews(todoCheckedCallback: (Int, Boolean) -> Unit) {
@@ -41,11 +47,6 @@ class TaskView @JvmOverloads constructor(
                 (LayoutInflater.from(context).inflate(R.layout.view_todo, todoContainer, false) as TodoView).apply {
                     initView(todo) { isChecked ->
                         todoCheckedCallback.invoke(todoIndex, isChecked)
-                        if (isTaskComplete()) {
-                            this@TaskView.titleView.setStrikeThrough()
-                        } else {
-                            this@TaskView.titleView.removeStrikeThrough()
-                        }
                     }
                 }
             todoContainer.addView(todoView)
