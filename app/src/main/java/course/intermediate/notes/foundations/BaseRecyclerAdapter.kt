@@ -1,7 +1,6 @@
 package course.intermediate.notes.foundations
 
 import android.view.View
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseRecyclerAdapter<T>(
@@ -9,10 +8,9 @@ abstract class BaseRecyclerAdapter<T>(
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun updateList(list: List<T>) {
-        val result = DiffUtil.calculateDiff(DiffUtilCallbackImpl(masterList, list))
         masterList.clear()
         masterList.addAll(list)
-        result.dispatchUpdatesTo(this)
+        notifyDataSetChanged()
     }
 
     override fun getItemViewType(position: Int): Int = if (position == 0) {
@@ -40,17 +38,5 @@ abstract class BaseRecyclerAdapter<T>(
     companion object {
         const val TYPE_ADD_BUTTON = 0
         const val TYPE_INFO = 1
-    }
-
-    class DiffUtilCallbackImpl<T>(private val oldList: List<T>, private val newList: List<T>) : DiffUtil.Callback() {
-        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-            oldList[oldItemPosition] == newList[newItemPosition]
-
-        override fun getOldListSize() = oldList.size
-
-        override fun getNewListSize() = newList.size
-
-        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int) =
-            oldList[oldItemPosition] == newList[newItemPosition]
     }
 }
