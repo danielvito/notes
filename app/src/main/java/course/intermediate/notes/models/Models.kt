@@ -20,6 +20,8 @@ class Task @JvmOverloads constructor(
     tag: Tag? = null
 ) : TaskEntity(title = title, tag = tag) {
 
+    fun isComplete() = todos.firstOrNull { !it.isComplete }?.isComplete ?: true
+
     init {
         todos.forEach {
             it.taskId = uid

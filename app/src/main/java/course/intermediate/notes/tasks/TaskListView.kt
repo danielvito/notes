@@ -44,5 +44,4 @@ class TaskListView @JvmOverloads constructor(
     fun deleteItem(indexInList: Int, indexInView: Int) {
         adapter.onItemDeleted(indexInList, indexInView)
     }
-
 }
